@@ -4,11 +4,25 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "nodemon index.js",
+    "migration:create": "node .\\database\\migration.js add migration",
+    "migration:run": "node .\\database\\migration.js up",
+    "migration:revert": "node .\\database\\migration.js down"
   },
   "author": "ilya sheverdinkin",
   "license": "ISC",
   "dependencies": {
-    "express": "^4.17.2"
+    "dotenv": "^16.0.0",
+    "express": "^4.17.2",
+    "express-joi-validation": "^5.0.1",
+    "joi": "^17.6.0",
+    "mysql-migrations": "^1.0.7",
+    "mysql2": "^2.3.3",
+    "sequelize": "^6.19.0",
+    "uuid": "^8.3.2"
+  },
+  "devDependencies": {
+    "eslint": "^8.13.0",
+    "nodemon": "^2.0.15"
   }
 }
