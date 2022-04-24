@@ -1,4 +1,4 @@
-const PartnersEmploymentInfo = require('../../database/models/partnersEmploymentInfo.model');
+const PartnersEmploymentInfo = require('../../models/partnersEmploymentInfo.model');
 
 const partnersEmploymentInfoService = {
   findOne: async (criteria) => {

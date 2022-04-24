@@ -1,4 +1,4 @@
-const ProgramingLanguages = require('../../database/models/programingLanguages.model');
+const ProgramingLanguages = require('../../models/programingLanguages.model');
 
 const programingLanguagesService = {
   findOne: async (criteria) => {

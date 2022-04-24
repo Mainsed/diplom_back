@@ -1,4 +1,4 @@
-const EmploymentMaterials = require('../../database/models/employmentMaterials.model');
+const EmploymentMaterials = require('../../models/employmentMaterials.model');
 
 const employmentMaterialsService = {
   findOne: async (criteria) => {

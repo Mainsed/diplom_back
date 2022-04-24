@@ -17,7 +17,7 @@ const faqListController = {
   create: async (req, res, next) => {
     try {
       const entity = req.body;
-      entity.id = uuidv4();
+      entity._id = uuidv4();
       res.json(await faqListService.create(entity));
     } catch (e) { next(e); }
   },

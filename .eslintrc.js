@@ -25,7 +25,7 @@ module.exports = {
     'function-paren-newline': 'off',
     'max-classes-per-file': 'off',
     'object-shorthand': ['error', 'always'],
-    'no-underscore-dangle': 'error',
+    'no-underscore-dangle': 'off',
     'no-var': 'error',
     'no-unused-vars': 'error',
     'no-multi-spaces': 'error',

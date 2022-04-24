@@ -4,24 +4,33 @@ const professionListRouter = require('./modules/professionList/professionList.ro
 const partnersEmploymentInfoRouter = require('./modules/partnersEmploymentInfo/partnersEmploymentInfo.router');
 const faqListRouter = require('./modules/faqList/faqList.router');
 const employmentMaterialsRouter = require('./modules/employmentMaterials/employmentMaterials.router');
+const cors = require('cors');
+const mongoose = require('mongoose');
 
 require('dotenv').config();
 
-const app = express();
+mongoose.connect(
+  process.env.DATABASE_CONNECTION_STRING,
+  {useNewUrlParser: true,
+  useUnifiedTopology: true,
+});
+
+const app = express(); 
 
 app.use((req, res, next) => {
   console.log(req.body, req.url, req.method);
-
+if(req.url === '/test') next();
   const authToken = req.headers.authorization;
-  if (!authToken || authToken !== process.env.AUTH_TOKEN)
+  if ((!authToken || authToken !== process.env.AUTH_TOKEN) && req.method !== 'OPTIONS')
     throw new Error(JSON.stringify({ message: 'Not valid auth token', status: 'Forbidden', code: 403 }));
 
   next();
 });
 
 app.use(express.json());
+app.use(cors());
 
-app.use('/programingLanguages', programingLanguagesRouter);
+app.use('/programmingLanguages', programingLanguagesRouter);
 app.use('/professionList', professionListRouter);
 app.use('/partnersEmploymentInfo', partnersEmploymentInfoRouter);
 app.use('/faqList', faqListRouter);

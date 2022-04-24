@@ -1,4 +1,4 @@
-const ProfessionList = require('../../database/models/professionList.model');
+const ProfessionList = require('../../models/professionList.model');
 
 const professionListService = {
   findOne: async (criteria) => {

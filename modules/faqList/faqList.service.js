@@ -1,4 +1,4 @@
-const FaqList = require('../../database/models/faqList.model');
+const FaqList = require('../../models/faqList.model');
 
 const faqListService = {
   findOne: async (criteria) => {
@@ -15,7 +15,7 @@ const faqListService = {
     return faqList;
   },
   findAll: async () => {
-    return FaqList.findAll({ where: { deletedAt: null } });
+    return FaqList.find({ where: { deletedAt: null } });
   },
   create: async (entity) => {
     return FaqList.create(entity);
