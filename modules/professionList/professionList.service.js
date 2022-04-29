@@ -2,7 +2,7 @@ const ProfessionList = require('../../models/professionList.model');
 
 const professionListService = {
   findOne: async (criteria) => {
-    const professionList = await ProfessionList.findOne({ where: { ...criteria, deletedAt: null } });
+    const professionList = await ProfessionList.findOne({ ...criteria, deletedAt: null });
 
     if (!professionList) throw new Error(JSON.stringify(
       {
@@ -15,18 +15,16 @@ const professionListService = {
     return professionList;
   },
   findAll: async () => {
-    return ProfessionList.findAll({ where: { deletedAt: null } });
+    return ProfessionList.find({ deletedAt: null });
   },
   create: async (entity) => {
     return ProfessionList.create(entity);
   },
-  update: async (id, newEntity) => {
-    return professionListService.findOne({ id })
-      .then(entity => entity.update(newEntity));
+  update: async (_id, newEntity) => {
+    return ProfessionList.updateOne({ _id }, newEntity);
   },
-  delete: async (id) => {
-    return professionListService.findOne({ id })
-      .then(entity => entity.update({ deletedAt: new Date(Date.now()) }));
+  delete: async (_id) => {
+    return ProfessionList.updateOne({ _id }, { deletedAt: new Date(Date.now()) });
   },
 };
 

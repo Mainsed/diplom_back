@@ -4,13 +4,16 @@ const schema = new Schema({
   createdAt: {
     type: Date,
     require: true,
+    default: new Date(Date.now()),
   },
   updatedAt: {
     type: Date,
     require: true,
+    default: new Date(Date.now()),
   },
-  deletedAt: {
+    deletedAt: {
     type: Date,
+    default: null,
   },
   _id: {
     type: String,

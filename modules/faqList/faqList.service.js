@@ -2,7 +2,7 @@ const FaqList = require('../../models/faqList.model');
 
 const faqListService = {
   findOne: async (criteria) => {
-    const faqList = await FaqList.findOne({ where: { ...criteria, deletedAt: null } });
+    const faqList = await FaqList.findOne({ ...criteria, deletedAt: null });
 
     if (!faqList) throw new Error(JSON.stringify(
       {
@@ -15,18 +15,16 @@ const faqListService = {
     return faqList;
   },
   findAll: async () => {
-    return FaqList.find({ where: { deletedAt: null } });
+    return FaqList.find({ deletedAt: null });
   },
   create: async (entity) => {
     return FaqList.create(entity);
   },
-  update: async (id, newEntity) => {
-    return faqListService.findOne({ id })
-      .then(entity => entity.update(newEntity));
+  update: async (_id, newEntity) => {
+    return FaqList.updateOne({ _id }, newEntity);
   },
-  delete: async (id) => {
-    return faqListService.findOne({ id })
-      .then(entity => entity.update({ deletedAt: new Date(Date.now()) }));
+  delete: async (_id) => {
+    return FaqList.updateOne({ _id }, { deletedAt: new Date(Date.now()) });
   },
 };
 

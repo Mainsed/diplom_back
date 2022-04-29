@@ -2,7 +2,7 @@ const ProgramingLanguages = require('../../models/programingLanguages.model');
 
 const programingLanguagesService = {
   findOne: async (criteria) => {
-    const programingLanguages = await ProgramingLanguages.findOne({ where: { ...criteria, deletedAt: null } });
+    const programingLanguages = await ProgramingLanguages.findOne({ ...criteria, deletedAt: null });
 
     if (!programingLanguages) throw new Error(JSON.stringify(
       {
@@ -15,18 +15,16 @@ const programingLanguagesService = {
     return programingLanguages;
   },
   findAll: async () => {
-    return ProgramingLanguages.findAll({ where: { deletedAt: null } });
+    return ProgramingLanguages.find({ deletedAt: null });
   },
   create: async (entity) => {
     return ProgramingLanguages.create(entity);
   },
-  update: async (id, newEntity) => {
-    return programingLanguagesService.findOne({ id })
-      .then(entity => entity.update(newEntity));
+  update: async (_id, newEntity) => {
+    return ProgramingLanguages.updateOne({ _id }, newEntity);
   },
-  delete: async (id) => {
-    return programingLanguagesService.findOne({ id })
-      .then(entity => entity.update({ deletedAt: new Date(Date.now()) }));
+  delete: async (_id) => {
+    return ProgramingLanguages.updateOne({ _id }, { deletedAt: new Date(Date.now()) });
   },
 };
 

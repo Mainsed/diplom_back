@@ -2,7 +2,7 @@ const PartnersEmploymentInfo = require('../../models/partnersEmploymentInfo.mode
 
 const partnersEmploymentInfoService = {
   findOne: async (criteria) => {
-    const partnersEmploymentInfo = await PartnersEmploymentInfo.findOne({ where: { ...criteria, deletedAt: null } });
+    const partnersEmploymentInfo = await PartnersEmploymentInfo.findOne({ ...criteria, deletedAt: null });
 
     if (!partnersEmploymentInfo) throw new Error(JSON.stringify(
       {
@@ -15,18 +15,16 @@ const partnersEmploymentInfoService = {
     return partnersEmploymentInfo;
   },
   findAll: async () => {
-    return PartnersEmploymentInfo.findAll({ where: { deletedAt: null } });
+    return PartnersEmploymentInfo.find({ deletedAt: null });
   },
   create: async (entity) => {
     return PartnersEmploymentInfo.create(entity);
   },
-  update: async (id, newEntity) => {
-    return partnersEmploymentInfoService.findOne({ id })
-      .then(entity => entity.update(newEntity));
+  update: async (_id, newEntity) => {
+    return PartnersEmploymentInfo.updateOne({ _id }, newEntity);
   },
-  delete: async (id) => {
-    return partnersEmploymentInfoService.findOne({ id })
-      .then(entity => entity.update({ deletedAt: new Date(Date.now()) }));
+  delete: async (_id) => {
+    return PartnersEmploymentInfo.updateOne({ _id }, { deletedAt: new Date(Date.now()) });
   },
 };
 

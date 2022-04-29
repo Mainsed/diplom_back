@@ -2,7 +2,7 @@ const EmploymentMaterials = require('../../models/employmentMaterials.model');
 
 const employmentMaterialsService = {
   findOne: async (criteria) => {
-    const employmentMaterial = await EmploymentMaterials.findOne({ where: { ...criteria, deletedAt: null } });
+    const employmentMaterial = await EmploymentMaterials.findOne({ ...criteria, deletedAt: null });
 
     if (!employmentMaterial) throw new Error(JSON.stringify(
       {
@@ -15,18 +15,16 @@ const employmentMaterialsService = {
     return employmentMaterial;
   },
   findAll: async () => {
-    return EmploymentMaterials.findAll({ where: { deletedAt: null } });
+    return EmploymentMaterials.find({ deletedAt: null });
   },
   create: async (entity) => {
     return EmploymentMaterials.create(entity);
   },
-  update: async (id, newEntity) => {
-    return employmentMaterialsService.findOne({ id })
-      .then(entity => entity.update(newEntity));
+  update: async (_id, newEntity) => {
+    return EmploymentMaterials.updateOne({ _id }, newEntity);
   },
-  delete: async (id) => {
-    return employmentMaterialsService.findOne({ id })
-      .then(entity => entity.update({ deletedAt: new Date(Date.now()) }));
+  delete: async (_id) => {
+    return EmploymentMaterials.updateOne({ _id }, { deletedAt: new Date(Date.now()) });
   },
 };
 
