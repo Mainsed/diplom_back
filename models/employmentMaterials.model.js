@@ -17,7 +17,6 @@ const schema = new Schema({
   },
   _id: {
     type: String,
-
     require: true
   },
   info: {

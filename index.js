@@ -17,6 +17,9 @@ mongoose.connect(
 
 const app = express(); 
 
+app.use(express.json());
+app.use(cors());
+
 app.use((req, res, next) => {
   console.log(req.body, req.url, req.method);
 if(req.url === '/test') next();
@@ -26,9 +29,6 @@ if(req.url === '/test') next();
 
   next();
 });
-
-app.use(express.json());
-app.use(cors());
 
 app.use('/programmingLanguages', programingLanguagesRouter);
 app.use('/professionList', professionListRouter);

@@ -4,10 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "nodemon index.js",
-    "migration:create": "node .\\database\\migration.js add migration",
-    "migration:run": "node .\\database\\migration.js up",
-    "migration:revert": "node .\\database\\migration.js down"
+    "start": "nodemon index.js"
   },
   "author": "ilya sheverdinkin",
   "license": "ISC",

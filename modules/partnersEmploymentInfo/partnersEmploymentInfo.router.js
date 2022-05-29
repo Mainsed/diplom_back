@@ -5,7 +5,7 @@ const {
   partnersEmploymentInfoCreateSchema,
   partnersEmploymentInfoUpdateSchema
 } = require('./partnersEmploymentInfo.validate.schemas');
-const { } = require('../../utils/general.validate.schemas');
+
 
 const router = express.Router();
 const validator = createValidator();

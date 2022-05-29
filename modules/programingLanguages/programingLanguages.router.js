@@ -5,7 +5,6 @@ const {
   programingLanguagesCreateSchema,
   programingLanguagesUpdateSchema
 } = require('./programingLanguages.validate.schemas');
-const { } = require('../../utils/general.validate.schemas');
 
 const router = express.Router();
 const validator = createValidator();
